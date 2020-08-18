@@ -14,7 +14,11 @@
             "cwd": "${workspaceFolder}/bin",
             "environment": [],
             "externalConsole": false,
-            "preLaunchTask": "Build project"
+            "preLaunchTask": "Build project",
+            "linux": {
+                "type": "cppdbg",
+                "program": "${workspaceFolder}/bin/trayracer"
+            }
         }
     ]
 }
