@@ -11,3 +11,11 @@ Windows:
 Linux:
 
 * Untested, but should run with CMake and possibly even via VSCode.
+
+If you have problems with missing libraries, install (sudo apt-get install ...):
+* libgl-dev
+* xorg-dev
+* libglu1-mesa-dev
+* gdb
+
+VSCode requires the C/C++ extension to be able to use the debugger.
