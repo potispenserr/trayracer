@@ -19,7 +19,7 @@ SET(ENV_ROOT ${CMAKE_CURRENT_DIR})
 IF(MSVC)
     SET(OPENGL_LIBS opengl32.lib)
 ELSE()
-    SET(OPENGL_LIBS GL GLU X11 Xxf86vm pthread Xrandr Xi Xinerama Xcursor)
+    SET(OPENGL_LIBS GL X11 Xxf86vm pthread Xrandr Xi Xinerama Xcursor)
 ENDIF()
 
 if (MSVC)
