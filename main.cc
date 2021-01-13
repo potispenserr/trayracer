@@ -1,28 +1,119 @@
 #include <stdio.h>
+#include <iostream>
 #include "window.h"
 #include "vec3.h"
 #include "raytracer.h"
 #include "sphere.h"
+#include <stdlib.h>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
 
 #define degtorad(angle) angle * MPI / 180
 
-int main()
+void save_image(int w, int h, std::vector<Color> framebuffer)
+{
+    std::cout << "saving image" << "\n";
+
+    unsigned char data[w * h * 3];
+    int frameIndex = 20000;
+    int index = 0;
+     for (int j = h - 1; j >= 0; --j)
+     {
+      for (int i = 0; i < w; ++i)
+      {
+       float r = framebuffer[frameIndex].r;
+       float g = framebuffer[frameIndex].g;
+       float b = framebuffer[frameIndex].b;
+       int ir = int(255.0 * r);
+       int ig = int(255.0 * g);
+       int ib = int(255.0 * b);
+
+       frameIndex--;
+
+       data[index++] = ir;
+       data[index++] = ig;
+       data[index++] = ib;
+      }
+     }
+     /*for (int i = 0; i < w; ++i){
+        for (int j = h - 1; j >= 0; --j){
+            float r = framebuffer[frameIndex].r;
+            float g = framebuffer[frameIndex].g;
+            float b = framebuffer[frameIndex].b;
+            int ir = int(255.0 * r);
+            int ig = int(255.0 * g);
+            int ib = int(255.0 * b);
+
+            std::cout << j << " " << i << " IR: " << ir << " IG: " << ig << " IB: " << ib << "\n";
+
+            frameIndex++;
+
+            data[index++] = ir;
+            data[index++] = ig;
+            data[index++] = ib;
+        } 
+     }*/
+
+     /*int index = 0;
+     for (int j = h - 1; j >= 0; --j)
+     {
+      for (int i = 0; i < w; ++i)
+      {
+       float r = (float)i / (float)w;
+       float g = (float)j / (float)h;
+       float b = 0.2f;
+       int ir = int(255.0 * r);
+       int ig = int(255.0 * g);
+       int ib = int(255.0 * b);
+
+       data[index++] = ir;
+       data[index++] = ig;
+       data[index++] = ib;
+      }
+     }*/
+
+
+    stbi_write_jpg("jpg_test_.jpg", w, h, 3, data, 100);
+}
+
+int main(int argc, const char* argv[])
 { 
+    if(argc <= 1){
+        std::cout << "No arguments supplied!" << "\n";
+        std::cout << "Arguments available:" << "\n";
+        std::cout << "-w X = set image width to X" << "\n";
+        std::cout << "-h X = set image height to X" << "\n";
+        std::cout << "-r X = set rays per pixel to X" << "\n";
+        std::cout << "-s X = set the amount of random spheres to appear in the scene to X" << "\n"; 
+        std::cout << "Usage example: " << "\n";
+        std::cout << "trayracer.exe -w 200 -h 100 -r 1 -s 4" << "\n";
+    }
     Display::Window wnd;
+
+
+    for (int i = 0; i < argc; i++)
+    {
+        std::cout << argv[i] << "\n";
+    }
     
-    wnd.SetTitle("TrayRacer");
+    wnd.SetTitle("BrayKracer");
     
     if (!wnd.Open())
         return 1;
 
     std::vector<Color> framebuffer;
 
-    const unsigned w = 200;
-    const unsigned h = 100;
+    const unsigned w = std::stoi(argv[2]);
+    const unsigned h = std::stoi(argv[4]);
     framebuffer.resize(w * h);
     
-    int raysPerPixel = 1;
-    int maxBounces = 5;
+    int raysPerPixel = std::stoi(argv[6]);
+    int maxBounces = 120;
+
+    
 
     Raytracer rt = Raytracer(w, h, framebuffer, raysPerPixel, maxBounces);
 
@@ -74,7 +165,7 @@ int main()
 
     // camera
     bool resetFramebuffer = false;
-    vec3 camPos = { 0,1.0f,10.0f };
+    vec3 camPos = { 0.5, 4.0f, 7.0f };
     vec3 moveDir = { 0,0,0 };
 
     wnd.SetKeyPressFunction([&exit, &moveDir, &resetFramebuffer](int key, int scancode, int action, int mods)
@@ -135,12 +226,25 @@ int main()
     // number of accumulated frames
     int frameIndex = 0;
 
+    int lol = 0;
+
     std::vector<Color> framebufferCopy;
     framebufferCopy.resize(w * h);
 
     // rendering loop
-    while (wnd.IsOpen() && !exit)
+    while (wnd.IsOpen() && !exit) 
     {
+        if(lol > 0){
+            /*for(int i = 0; i < 100; i++){
+                std::cout << i << " R: " << framebufferCopy[i].r << "\t";
+                std::cout << i << " G: " << framebufferCopy[i].g << "\t";
+                std::cout << i << " B: " << framebufferCopy[i].b << "\n";
+            }*/
+            std::cout << framebuffer.size() << "\n";
+
+        }
+        else
+        {
         resetFramebuffer = false;
         moveDir = {0,0,0};
         pitch = 0;
@@ -172,6 +276,7 @@ int main()
             frameIndex = 0;
         }
 
+        //RTX ON
         rt.Raytrace();
         frameIndex++;
 
@@ -187,16 +292,22 @@ int main()
                 p++;
             }
         }
+        std::cout << "FrameIndex: " << frameIndex << "\n";
 
         glClearColor(0, 0, 0, 1.0);
         glClear( GL_COLOR_BUFFER_BIT );
 
         wnd.Blit((float*)&framebufferCopy[0], w, h);
         wnd.SwapBuffers();
+        }
+        
+        
     }
 
     if (wnd.IsOpen())
         wnd.Close();
+    save_image(w, h, framebufferCopy);
 
     return 0;
 } 
+
