@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Debug project",
-            "type": "cppvsdbg",
+            "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/trayracer.exe",
             "args": [],
@@ -17,7 +17,8 @@
             "preLaunchTask": "Build project",
             "linux": {
                 "type": "cppdbg",
-                "program": "${workspaceFolder}/bin/trayracer"
+                "program": "${workspaceFolder}/bin/trayracer",
+                "args": ["-w", "200",  "-h",  "100",  "-r",  "1",  "-s",  "4"]
             }
         }
     ]

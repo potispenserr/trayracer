@@ -66,6 +66,7 @@ Raytracer::TracePath(Ray ray, unsigned n)
 
     if (Raycast(ray, hitPoint, hitNormal, hitObject, distance, this->objects))
     {
+        rayamount++;
         Ray* scatteredRay = new Ray(hitObject->ScatterRay(ray, hitPoint, hitNormal));
         if (n < this->bounces)
         {
@@ -126,6 +127,7 @@ Raytracer::Clear()
         color.g = 0.0f;
         color.b = 0.0f;
     }
+    rayamount = 0;
 }
 
 //------------------------------------------------------------------------------
