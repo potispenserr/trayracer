@@ -53,7 +53,7 @@ public:
     // height of framebuffer
     const unsigned height;
 
-    int rayamount = 0;
+    int rayAmount = 0;
 
     
     const vec3 lowerLeftCorner = { -2.0, -1.0, -1.0 };

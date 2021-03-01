@@ -23,6 +23,7 @@ Raytracer::Raytrace()
     static int leet = 1337;
     std::mt19937 generator (leet++);
     std::uniform_real_distribution<float> dis(0.0f, 1.0f);
+    rayAmount = width * height * rpp;
 
     for (int x = 0; x < this->width; ++x)
     {
@@ -66,11 +67,12 @@ Raytracer::TracePath(Ray ray, unsigned n)
 
     if (Raycast(ray, hitPoint, hitNormal, hitObject, distance, this->objects))
     {
-        rayamount++;
+        rayAmount++;
         Ray* scatteredRay = new Ray(hitObject->ScatterRay(ray, hitPoint, hitNormal));
         if (n < this->bounces)
         {
             return hitObject->GetColor() * this->TracePath(*scatteredRay, n + 1);
+            
         }
         delete scatteredRay;
 
@@ -127,7 +129,7 @@ Raytracer::Clear()
         color.g = 0.0f;
         color.b = 0.0f;
     }
-    rayamount = 0;
+    rayAmount = 0;
 }
 
 //------------------------------------------------------------------------------
