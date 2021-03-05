@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 #pragma once
 #include <vector>
 #include "vec3.h"
@@ -6,6 +9,9 @@
 #include "ray.h"
 #include "object.h"
 #include <float.h>
+
+
+
 
 //------------------------------------------------------------------------------
 /**
@@ -31,6 +37,8 @@ public:
     // clear screen
     void Clear();
 
+    void ClearObjects();
+
     // update matrices. Called automatically after setting view matrix
     void UpdateMatrices();
 
@@ -52,9 +60,6 @@ public:
     const unsigned width;
     // height of framebuffer
     const unsigned height;
-
-    int rayAmount = 0;
-
     
     const vec3 lowerLeftCorner = { -2.0, -1.0, -1.0 };
     const vec3 horizontal = { 4.0, 0.0, 0.0 };
@@ -74,6 +79,8 @@ inline void Raytracer::AddObject(Object* o)
 {
     this->objects.push_back(o);
 }
+
+
 
 inline void Raytracer::SetViewMatrix(mat4 val)
 {

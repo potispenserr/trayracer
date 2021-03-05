@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 #pragma once
 #include "ray.h"
 #include "color.h"
@@ -46,7 +49,7 @@ public:
     virtual ~Object()
     {
         // clean up name!
-        delete name;
+        delete[] name;
     }
 
     virtual bool Intersect(HitResult& hit, Ray ray, float maxDist) = 0;

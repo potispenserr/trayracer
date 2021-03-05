@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 /* stb_image_write - v1.15 - public domain - http://nothings.org/stb
    writes out PNG/BMP/TGA/JPEG/HDR images to C stdio - Sean Barrett 2010-2015
                                      no warranty implied; use at your own risk

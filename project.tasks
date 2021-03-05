@@ -1,0 +1,50 @@
+www.viva64.com/en/w	1	err	Help: The documentation for all analyzer warnings is available here: https://www.viva64.com/en/w/.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glew/src/glew.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/context.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/egl_context.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/glx_context.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/init.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/input.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/linux_joystick.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/monitor.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/posix_time.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/posix_tls.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/vulkan.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/window.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/x11_init.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/x11_monitor.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/x11_window.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/exts/glfw/src/xkb_unicode.c	1	err	V009 To use free version of PVS-Studio, source code files are required to start with a special comment.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	2102	warn	V557 Array overrun is possible. The value of 'n' index could reach 16.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	3201	warn	V547 Expression 's->img_x > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	3930	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	3931	warn	V522 There might be dereferencing of a potential null pointer 'j'. Check lines: 3931, 3929.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	3942	warn	V522 There might be dereferencing of a potential null pointer 'j'. Check lines: 3942, 3941.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	3966	warn	V522 There might be dereferencing of a potential null pointer 'j'. Check lines: 3966, 3965.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	4264	err	V547 Expression 'c == 18' is always true.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5345	warn	V560 A part of conditional expression is always false: hsz != 124.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5374	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5588	warn	V1051 Consider checking for misprints. It's possible that the 'tga_image_type' should be checked here.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5719	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5723	warn	V547 Expression 'tga_height > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5724	warn	V547 Expression 'tga_width > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5956	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	5971	warn	V560 A part of conditional expression is always false: channelCount < 0.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6326	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6336	warn	V547 Expression 'y > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6337	warn	V547 Expression 'x > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6447	warn	V547 Expression 'g->w > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6448	warn	V547 Expression 'g->h > (1 << 24)' is always false.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6468	warn	V522 There might be dereferencing of a potential null pointer 'g'. Check lines: 6468, 6462.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6744	warn	V547 Expression 'g->transparent >= 0' is always true.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6823	warn	V769 The 'out' pointer in the 'out + ((layers - 1) * stride)' expression could be nullptr. In such case, resulting value will be senseless and it should not be used. Check lines: 6823, 6816.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6812	warn	V701 realloc() possible leak: when realloc() fails in allocating memory, original pointer '* delays' is lost. Consider assigning realloc() to a temporary pointer.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6855	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	6972	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	7176	warn	V560 A part of conditional expression is always false: channelCount < 0.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	7208	warn	V560 A part of conditional expression is always false: channelCount < 0.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image.h	7311	err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'ri' class object.
+/home/rubcap8/Documents/gitgood/trayracer/stb_image_write.h	1351	err	V781 The value of the 'i' index is checked after it was used. Perhaps there is a mistake in program logic.
+/home/rubcap8/Documents/gitgood/trayracer/raytracer.cc	10	err	V730 Not all members of a class are initialized inside the constructor. Consider inspecting: view, frustum.
+/home/rubcap8/Documents/gitgood/trayracer/window.cc	216	err	V614 Uninitialized variable 'unusedIds' used. Consider checking the fifth actual argument of the '__glewDebugMessageControl' function.
+/home/rubcap8/Documents/gitgood/trayracer/window.cc	64	err	V730 Not all members of a class are initialized inside the constructor. Consider inspecting: frameCopy, texture.

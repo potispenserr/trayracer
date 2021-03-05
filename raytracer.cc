@@ -1,5 +1,10 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 #include "raytracer.h"
 #include <random>
+#include <stdio.h>
+#include <iostream>
 
 //------------------------------------------------------------------------------
 /**
@@ -23,7 +28,6 @@ Raytracer::Raytrace()
     static int leet = 1337;
     std::mt19937 generator (leet++);
     std::uniform_real_distribution<float> dis(0.0f, 1.0f);
-    rayAmount = width * height * rpp;
 
     for (int x = 0; x < this->width; ++x)
     {
@@ -39,6 +43,7 @@ Raytracer::Raytrace()
                 direction = transform(direction, this->frustum);
                 
                 Ray* ray = new Ray(get_position(this->view), direction);
+                //rayAmount++;
                 color += this->TracePath(*ray, 0);
                 delete ray;
             }
@@ -67,14 +72,17 @@ Raytracer::TracePath(Ray ray, unsigned n)
 
     if (Raycast(ray, hitPoint, hitNormal, hitObject, distance, this->objects))
     {
-        rayAmount++;
         Ray* scatteredRay = new Ray(hitObject->ScatterRay(ray, hitPoint, hitNormal));
         if (n < this->bounces)
         {
-            return hitObject->GetColor() * this->TracePath(*scatteredRay, n + 1);
-            
+            Color hitColor = hitObject->GetColor() * this->TracePath(*scatteredRay, n + 1);
+            delete scatteredRay;
+
+            return hitColor;
         }
+        
         delete scatteredRay;
+
 
         if (n == this->bounces)
         {
@@ -129,7 +137,6 @@ Raytracer::Clear()
         color.g = 0.0f;
         color.b = 0.0f;
     }
-    rayAmount = 0;
 }
 
 //------------------------------------------------------------------------------
@@ -152,4 +159,11 @@ Raytracer::Skybox(vec3 direction)
     float t = 0.5*(direction.y + 1.0);
     vec3 vec = vec3(1.0, 1.0, 1.0) * (1.0 - t) + vec3(0.5, 0.7, 1.0) * t;
     return {(float)vec.x, (float)vec.y, (float)vec.z};
+}
+
+void Raytracer::ClearObjects(){
+    for(auto obj : this->objects){
+        delete obj;
+    }
+    this->objects.clear();
 }

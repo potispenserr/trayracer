@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 #include <stdio.h>
 #include <iostream>
 #include "vec3.h"
@@ -11,36 +14,28 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
-//#define degtorad(angle) angle * MPI / 180
+#define degtorad(angle) angle * MPI / 180
 
 void save_image(int w, int h, std::vector<Color>& framebuffer)
 {
     std::cout << "saving image" << "\n";
 
     unsigned char data[w * h * 3];
-    int frameIndex = w * h;
     int index = 0;
-     for (int j = h - 1; j >= 0; --j)
-     {
-      for (int i = 0; i < w; ++i)
-      {
-       float r = framebuffer[frameIndex].r;
-       float g = framebuffer[frameIndex].g;
-       float b = framebuffer[frameIndex].b;
-       int ir = int(255.0 * r);
-       int ig = int(255.0 * g);
-       int ib = int(255.0 * b);
+    for (int i = 0; i < w * h; i++){
+        data[index++] = 255.0f * framebuffer[i].r;
+        data[index++] = 255.0f * framebuffer[i].g;
+        data[index++] = 255.0f * framebuffer[i].b;
 
-       frameIndex--;
-
-       data[index++] = ir;
-       data[index++] = ig;
-       data[index++] = ib;
-      }
-     }
+    }
+    stbi_flip_vertically_on_write(1);
 
     stbi_write_jpg("jpg_test_.jpg", w, h, 3, data, 100);
+
+    std::cout << "saving complete" << "\n";
 }
+
+    
 
 int main(int argc, const char* argv[])
 { 
@@ -77,10 +72,10 @@ int main(int argc, const char* argv[])
         Raytracer rt = Raytracer(w, h, framebuffer, raysPerPixel, maxBounces);
 
         // Create some objects
-        Material* mat = new Material();
-        mat->type = "Lambertian";
-        mat->color = { 0.5,0.5,0.5 };
-        mat->roughness = 0.3;
+        Material mat;
+        mat.type = "Lambertian";
+        mat.color = { 0.5,0.5,0.5 };
+        mat.roughness = 0.3;
         Sphere* ground = new Sphere(1000, { 0,-1000, -1 }, mat);
         rt.AddObject(ground);
         for(int i = 0; i < std::stoi(argList[8]); i++){
@@ -93,25 +88,23 @@ int main(int argc, const char* argv[])
             float randG = rand() % 2;
             float randB = rand() % 2;
             
-
-            mat = new Material();
             switch (randType)
             {
             case 0:
-                mat->type = "Conductor";
+                mat.type = "Conductor";
                 break;
             case 1:
-                mat->type = "Lambertian";
+                mat.type = "Lambertian";
                 break;
             case 3:
-                mat->type = "Dielectric";
+                mat.type = "Dielectric";
                 break;
 
             default:
                 break;
             }
-            mat->color = {randR,randG,randB};
-            mat->roughness = 0.2f;
+            mat.color = {randR,randG,randB};
+            mat.roughness = 0.2f;
             Sphere* test = new Sphere(1, { randX, randY, randZ}, mat);
             rt.AddObject(test);
         }
@@ -152,11 +145,11 @@ int main(int argc, const char* argv[])
             // integral duration: requires duration_cast
             // converting integral duration to integral duration of shorter divisible time unit:
             // no duration_cast needed
-            std::cout << "rayAmount: " << rt.rayAmount << "\n";
-        
-            std::cout << "RTX took " << secDuration.count() * 1000 << " ms" << " with " << (rt.rayAmount / secDuration.count()) / 1000000 << " MRays/s" <<  std::endl;
 
-            std::cout << "sht " << secDuration.count() << "\n";
+            unsigned int rayAmount = w * h * raysPerPixel;
+            std::cout << "rayAmount: " << rayAmount << "\n";
+        
+            std::cout << "RTX took " << secDuration.count() << " s" << " with " << (rayAmount / secDuration.count()) / 1000000 << " MRays/s" <<  std::endl;
 
             // Get the average distribution of all samples
             {
@@ -164,17 +157,18 @@ int main(int argc, const char* argv[])
                 for (Color const& pixel : framebuffer)
                 {
                     framebufferCopy[p] = pixel;
-                    framebufferCopy[p].r /= 1;
-                    framebufferCopy[p].g /= 1;
-                    framebufferCopy[p].b /= 1;
+                    //framebufferCopy[p].r /= 1;
+                    //framebufferCopy[p].g /= 1;
+                    //framebufferCopy[p].b /= 1;
                     p++;
                 }
             }            
         }
+        
         save_image(w, h, framebufferCopy);
+        rt.ClearObjects();
+
         return 0;
     }
     
 } 
-
-

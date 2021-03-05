@@ -1,0 +1,10 @@
+ 
+
+
+
+post memory leak fixes
+Starting
+rayAmount: 40000
+RTX took 0.165503 s with 0.241687 MRays/s
+saving image
+saving complete

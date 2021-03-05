@@ -1,0 +1,73 @@
+==24793== Memcheck, a memory error detector
+==24793== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==24793== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==24793== Command: ./trayracer -w 200 -h 100 -r 1 -s 4
+==24793== 
+==24793== 
+==24793== HEAP SUMMARY:
+==24793==     in use at exit: 1,390,386 bytes in 21,704 blocks
+==24793==   total heap usage: 123,468 allocs, 101,764 frees, 7,463,369 bytes allocated
+==24793== 
+==24793== 64 bytes in 1 blocks are possibly lost in loss record 2 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x183D78: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x1839DA: Raytracer::Raytrace() (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x17D019: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 522 (104 direct, 418 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x17C92C: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 2,088 (416 direct, 1,672 indirect) bytes in 4 blocks are definitely lost in loss record 9 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x17CC91: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 3,776 bytes in 59 blocks are definitely lost in loss record 10 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x183D78: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x1839DA: Raytracer::Raytrace() (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x17D019: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 9,728 bytes in 152 blocks are definitely lost in loss record 11 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x183D78: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x1839DA: Raytracer::Raytrace() (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x17D019: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 42,304 bytes in 661 blocks are definitely lost in loss record 12 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x183D78: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x1839DA: Raytracer::Raytrace() (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x17D019: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 105,728 bytes in 1,652 blocks are definitely lost in loss record 13 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x183D78: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x183E23: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x1839DA: Raytracer::Raytrace() (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x17D019: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== 1,226,176 bytes in 19,159 blocks are definitely lost in loss record 14 of 14
+==24793==    at 0x483EDEF: operator new(unsigned long) (vg_replace_malloc.c:342)
+==24793==    by 0x183D78: Raytracer::TracePath(Ray, unsigned int) (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x1839DA: Raytracer::Raytrace() (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793==    by 0x17D019: main (in /home/rubcap8/Documents/gitgood/trayracer/bin/trayracer)
+==24793== 
+==24793== LEAK SUMMARY:
+==24793==    definitely lost: 1,388,232 bytes in 21,688 blocks
+==24793==    indirectly lost: 2,090 bytes in 15 blocks
+==24793==      possibly lost: 64 bytes in 1 blocks
+==24793==    still reachable: 0 bytes in 0 blocks
+==24793==         suppressed: 0 bytes in 0 blocks
+==24793== 
+==24793== For lists of detected and suppressed errors, rerun with: -s
+==24793== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)

@@ -1,3 +1,6 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 #include "material.h"
 #include "pbr.h"
 #include <time.h>
@@ -9,20 +12,20 @@
 /**
 */
 Ray
-BSDF(Material const* const material, Ray ray, vec3 point, vec3 normal)
+BSDF(Material& material, Ray ray, vec3 point, vec3 normal)
 {
     float cosTheta = -dot(normalize(ray.m), normalize(normal));
 
-    if (material->type != "Dielectric")
+    if (material.type != "Dielectric")
     {
         float F0 = 0.04f;
-        if (material->type == "Conductor")
+        if (material.type == "Conductor")
         {
             F0 = 0.95f;
         }
 
         // probability that a ray will reflect on a microfacet
-        float F = FresnelSchlick(cosTheta, F0, material->roughness);
+        float F = FresnelSchlick(cosTheta, F0, material.roughness);
 
         float r = RandomFloat();
 
@@ -30,7 +33,7 @@ BSDF(Material const* const material, Ray ray, vec3 point, vec3 normal)
         {
             mat4 basis = TBN(normal);
             // importance sample with brdf specular lobe
-            vec3 H = ImportanceSampleGGX_VNDF(RandomFloat(), RandomFloat(), material->roughness, ray.m, basis);
+            vec3 H = ImportanceSampleGGX_VNDF(RandomFloat(), RandomFloat(), material.roughness, ray.m, basis);
             vec3 reflected = reflect(ray.m, H);
             return { point, normalize(reflected) };
         }
@@ -51,21 +54,21 @@ BSDF(Material const* const material, Ray ray, vec3 point, vec3 normal)
         if (cosTheta <= 0)
         {
             outwardNormal = -normal;
-            niOverNt = material->refractionIndex;
+            niOverNt = material.refractionIndex;
             cosine = cosTheta * niOverNt / len(rayDir);
         }
         else
         {
             outwardNormal = normal;
-            niOverNt = 1.0 / material->refractionIndex;
+            niOverNt = 1.0 / material.refractionIndex;
             cosine = cosTheta / len(rayDir);
         }
 
         if (Refract(normalize(rayDir), outwardNormal, niOverNt, refracted))
         {
             // fresnel reflectance at 0 deg incidence angle
-            float F0 = powf(material->refractionIndex - 1, 2) / powf(material->refractionIndex + 1, 2);
-            reflect_prob = FresnelSchlick(cosine, F0, material->roughness);
+            float F0 = powf(material.refractionIndex - 1, 2) / powf(material.refractionIndex + 1, 2);
+            reflect_prob = FresnelSchlick(cosine, F0, material.roughness);
         }
         else
         {
